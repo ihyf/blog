@@ -39,7 +39,9 @@ SHOW_PAGEVIEW = True
 PERMALINK_TYPE = 'slug'  # 可选 id、slug、title
 
 # [(Endpoint, Name, IconName, Color), ...]
-SITE_NAV_MENUS: List[Tuple] = [("1", "name", "IconName", "red")]
+SITE_NAV_MENUS: List[Tuple] = [{"endpoint": "1", "name": "首页", "icon": "3", "color": "blue", "url": "http://www.baidu.com"},
+                               {"endpoint": "2", "name": "搜索", "icon": "3", "color": "red", "url": "/index"},
+                               {"endpoint": "3", "name": "归档", "icon": "4", "color": "blue", "url": "http://baidu.com"}]
 BEIAN_ID = ''
 JWT_SECRET = 'lyanna'
 EXPIRATION_DELTA = 60 * 60
