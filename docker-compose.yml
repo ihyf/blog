@@ -10,7 +10,7 @@ services:
       MYSQL_ROOT_PASSWORD: ''
       MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
     ports:
-      - '3306:3306'
+      - '127.0.0.1:3307:3306'
     volumes:
       - my-datavolume:/var/lib/mysql
     networks:
@@ -19,10 +19,14 @@ services:
     image: redis:alpine
     networks:
       - app-network
+    - ports:
+      - '127.0.0.1:6380:6379'
   memcached:
     image: memcached:1.5-alpine
     networks:
       - app-network
+    - ports:
+          - '127.0.0.1:11211:11211'
   web:
     networks:
       - app-network
@@ -37,9 +41,9 @@ services:
       - memcached
     environment:
       DEBUG: 1
-      REDIS_URL: 'redis://redis:6379'
+      REDIS_URL: 'redis://redis:6380'
       MEMCACHED_HOST: 'memcached'
-      DB_URL: 'mysql://root:@db:3306/test?charset=utf8'
+      DB_URL: 'mysql://root:@db:3307/test?charset=utf8'
       PYTHONPATH: $PYTHONPATH:/usr/local/src/aiomcache:/usr/local/src/aiomysql:/usr/local/src/tortoise:/usr/local/src/arq:/usr/local/src
     command: sh -c './setup.sh && python app.py'
 volumes:
