@@ -35,11 +35,11 @@ PER_PAGE = 10
 GOOGLE_ANALYTICS = ''
 SENTRY_DSN = ''
 REQUEST_TIMEOUT = 15
-SHOW_PAGEVIEW = False
+SHOW_PAGEVIEW = True
 PERMALINK_TYPE = 'slug'  # 可选 id、slug、title
 
 # [(Endpoint, Name, IconName, Color), ...]
-SITE_NAV_MENUS: List[Tuple] = []
+SITE_NAV_MENUS: List[Tuple] = [("1", "name", "IconName", "red")]
 BEIAN_ID = ''
 JWT_SECRET = 'lyanna'
 EXPIRATION_DELTA = 60 * 60
